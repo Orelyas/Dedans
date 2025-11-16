@@ -7,23 +7,21 @@ import {
   type ColorThemeType,
 } from "@/utils/contexts";
 import { mediumLabelFont } from "@/utils/fonts";
-import type { IconType } from "@/utils/icons";
 import { dayPagePath, homePagePath } from "@/utils/router";
 import { useContext, useRef } from "react";
 import { Link, useLocation } from "react-router";
 import styled, { css } from "styled-components";
+import type { NavigationItemType } from "./utils";
 
 export const NavigationItem = ({
-  icon,
   isExpanded = false,
-  label,
-  to,
+  navigationItem,
 }: {
-  icon: IconType;
   isExpanded?: boolean;
-  label: string;
-  to: string;
+  navigationItem: NavigationItemType;
 }) => {
+  const { icon, label, to } = navigationItem;
+
   const colorTheme = useContext(ColorThemeContext);
   const location = useLocation();
   const ref = useRef<HTMLDivElement>(null);

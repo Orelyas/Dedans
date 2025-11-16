@@ -23,11 +23,9 @@ export const NavigationBar = () => {
     <StyledNavigationBar $colorTheme={colorTheme}>
       {navigationItemArray.map((navigationItem, index) => (
         <NavigationItem
-          icon={navigationItem.icon}
           isExpanded={isSmallWindow}
           key={index}
-          label={navigationItem.label}
-          to={navigationItem.to}
+          navigationItem={navigationItem}
         />
       ))}
     </StyledNavigationBar>
