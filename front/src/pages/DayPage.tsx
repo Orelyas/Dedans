@@ -1,13 +1,3 @@
-import styled from "styled-components";
-
 export const DayPage = () => {
-  return (
-    <>
-      <Test>DayPage</Test>
-    </>
-  );
+  return <>DayPage</>;
 };
-
-const Test = styled.div`
-  background-color: orange;
-`;
