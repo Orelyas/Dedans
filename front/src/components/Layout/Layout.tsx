@@ -9,16 +9,16 @@ import { useIsWindowSizeClass } from "@/utils/hooks";
 import { useContext } from "react";
 import { Outlet } from "react-router";
 import styled from "styled-components";
+import { NavigationBar } from "./components";
 
 export const Layout = () => {
-  const isMobile = useIsWindowSizeClass(mobileSizeClassArray);
-
   const colorTheme = useContext(ColorThemeContext);
+  const isMobile = useIsWindowSizeClass(mobileSizeClassArray);
 
   return (
     <>
       <StyledLayout $colorTheme={colorTheme}>
-        {isMobile ? <div>NavigationBar</div> : <div>NavigationRail</div>}
+        {isMobile ? <NavigationBar /> : <div>NavigationRail</div>}
 
         <StyledContent>
           <Outlet />

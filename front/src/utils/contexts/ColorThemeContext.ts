@@ -9,11 +9,21 @@ import {
 import { createContext } from "react";
 
 export interface ColorThemeType {
+  onSecondaryContainerColor: string;
   onSurfaceColor: string;
+  onSurfaceVariantColor: string;
+  outlineVariantColor: string;
+  secondaryColor: string;
+  secondaryContainerColor: string;
+  surfaceContainerColor: string;
   surfaceContainerLowestColor: string;
 }
 
-export const defaultAppThemeColor = "#5A298F";
+export const defaultAppThemeColor = "#ba5b88";
+
+export const buildActiveColor = (color: string) => {
+  return `${color}1F`;
+};
 
 export const buildColorTheme = (hexColor: string, isDarkMode: boolean) => {
   const hct = buildHctFromHexColor(hexColor);
@@ -24,12 +34,24 @@ export const buildColorTheme = (hexColor: string, isDarkMode: boolean) => {
 };
 
 const buildColorThemeFromColorScheme = (colorScheme: DynamicScheme) => {
-  return {
+  const colorTheme: ColorThemeType = {
+    onSecondaryContainerColor: hexFromArgb(colorScheme.onSecondaryContainer),
     onSurfaceColor: hexFromArgb(colorScheme.onSurface),
+    onSurfaceVariantColor: hexFromArgb(colorScheme.onSurfaceVariant),
+    outlineVariantColor: hexFromArgb(colorScheme.outlineVariant),
+    secondaryColor: hexFromArgb(colorScheme.secondary),
+    secondaryContainerColor: hexFromArgb(colorScheme.secondaryContainer),
+    surfaceContainerColor: hexFromArgb(colorScheme.surfaceContainer),
     surfaceContainerLowestColor: hexFromArgb(
       colorScheme.surfaceContainerLowest
     ),
   };
+
+  return colorTheme;
+};
+
+export const buildFocusColor = (color: string) => {
+  return `${color}1A`;
 };
 
 const buildHctFromHexColor = (hexColor: string) => {
@@ -38,6 +60,10 @@ const buildHctFromHexColor = (hexColor: string) => {
   const argb = argbFromRgb(red, green, blue);
 
   return Hct.fromInt(argb);
+};
+
+export const buildHoverColor = (color: string) => {
+  return `${color}14`;
 };
 
 const buildRgbFromHexColor = (hexColor: string) => {
