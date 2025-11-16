@@ -1,12 +1,12 @@
 import { smallWindowSizeClass } from "@/utils/breakpoints";
 import { ColorThemeContext, type ColorThemeType } from "@/utils/contexts";
 import { useIsWindowSizeClass } from "@/utils/hooks";
-import { homeIcon, menuIcon, settingsIcon } from "@/utils/icons";
+import { homeIcon, settingsIcon } from "@/utils/icons";
 import { homePagePath, settingsPagePath } from "@/utils/router";
 import { useContext } from "react";
-import styled from "styled-components";
-import { NavigationItem } from "./components";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
+import { NavigationItem, NavigationMenuButton } from "./components";
 
 export const NavigationBar = () => {
   const colorTheme = useContext(ColorThemeContext);
@@ -14,13 +14,14 @@ export const NavigationBar = () => {
   const { t } = useTranslation();
 
   const navigationItemArray = [
-    { icon: menuIcon, label: t("menu"), to: homePagePath },
     { icon: homeIcon, label: t("today"), to: homePagePath },
     { icon: settingsIcon, label: t("settings"), to: settingsPagePath },
   ];
 
   return (
     <StyledNavigationBar $colorTheme={colorTheme}>
+      <NavigationMenuButton isExpanded={isSmallWindow} />
+
       {navigationItemArray.map((navigationItem, index) => (
         <NavigationItem
           isExpanded={isSmallWindow}
