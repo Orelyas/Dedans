@@ -6,15 +6,17 @@ import { homePagePath, settingsPagePath } from "@/utils/router";
 import { useContext } from "react";
 import styled from "styled-components";
 import { NavigationItem } from "./components";
+import { useTranslation } from "react-i18next";
 
 export const NavigationBar = () => {
   const colorTheme = useContext(ColorThemeContext);
   const isSmallWindow = useIsWindowSizeClass([smallWindowSizeClass]);
+  const { t } = useTranslation();
 
   const navigationItemArray = [
-    { icon: menuIcon, label: "Menu", to: homePagePath },
-    { icon: homeIcon, label: "Aujourd'hui", to: homePagePath },
-    { icon: settingsIcon, label: "Paramètres", to: settingsPagePath },
+    { icon: menuIcon, label: t("menu"), to: homePagePath },
+    { icon: homeIcon, label: t("today"), to: homePagePath },
+    { icon: settingsIcon, label: t("settings"), to: settingsPagePath },
   ];
 
   return (
