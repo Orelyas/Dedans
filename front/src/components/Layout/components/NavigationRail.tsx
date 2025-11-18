@@ -1,20 +1,19 @@
 import { ColorThemeContext, type ColorThemeType } from "@/utils/contexts";
-import { homeIcon, settingsIcon } from "@/utils/icons";
-import { homePagePath, settingsPagePath } from "@/utils/router";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 import { NavigationItem, NavigationMenuButton } from "./components";
-import { navigationItemPadding } from "./utils";
+import { buildNavigationMenuItemArray, navigationItemPadding } from "./utils";
 
-export const NavigationRail = () => {
+export const NavigationRail = ({
+  toggleIsNavigationMenuOpen,
+}: {
+  toggleIsNavigationMenuOpen: () => void;
+}) => {
   const colorTheme = useContext(ColorThemeContext);
   const { t } = useTranslation();
 
-  const navigationItemArray = [
-    { icon: homeIcon, label: t("today"), to: homePagePath },
-    { icon: settingsIcon, label: t("settings"), to: settingsPagePath },
-  ];
+  const navigationItemArray = buildNavigationMenuItemArray(t);
 
   return (
     <StyledNavigationRail $colorTheme={colorTheme}>
@@ -24,7 +23,9 @@ export const NavigationRail = () => {
         ))}
       </div>
 
-      <StyledNavigationMenuButton />
+      <StyledNavigationMenuButton
+        toggleIsNavigationMenuOpen={toggleIsNavigationMenuOpen}
+      />
     </StyledNavigationRail>
   );
 };

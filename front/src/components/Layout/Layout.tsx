@@ -6,19 +6,34 @@ import {
 import { ColorThemeContext, type ColorThemeType } from "@/utils/contexts";
 import { mediumBodyFont } from "@/utils/fonts";
 import { useIsWindowSizeClass } from "@/utils/hooks";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Outlet } from "react-router";
 import styled from "styled-components";
-import { NavigationBar, NavigationRail } from "./components";
+import { NavigationBar, NavigationMenu, NavigationRail } from "./components";
 
 export const Layout = () => {
   const colorTheme = useContext(ColorThemeContext);
   const isMobile = useIsWindowSizeClass(mobileSizeClassArray);
+  const [isNavigationMenuOpen, setIsNavigationMenuOpen] = useState(false);
+
+  const toggleIsNavigationMenuOpen = () => {
+    setIsNavigationMenuOpen(!isNavigationMenuOpen);
+  };
 
   return (
     <>
+      {isNavigationMenuOpen && <NavigationMenu />}
+
       <StyledLayout $colorTheme={colorTheme}>
-        {isMobile ? <NavigationBar /> : <NavigationRail />}
+        {isMobile ? (
+          <NavigationBar
+            toggleIsNavigationMenuOpen={toggleIsNavigationMenuOpen}
+          />
+        ) : (
+          <NavigationRail
+            toggleIsNavigationMenuOpen={toggleIsNavigationMenuOpen}
+          />
+        )}
 
         <StyledContent>
           <Outlet />

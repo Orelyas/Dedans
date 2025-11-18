@@ -9,9 +9,11 @@ import { type NavigationItemType, buildNavigationItemStyle } from "./utils";
 export const NavigationMenuButton = ({
   className,
   isExpanded = false,
+  toggleIsNavigationMenuOpen,
 }: {
   className?: string;
   isExpanded?: boolean;
+  toggleIsNavigationMenuOpen: () => void;
 }) => {
   const colorTheme = useContext(ColorThemeContext);
   const { t } = useTranslation();
@@ -23,6 +25,7 @@ export const NavigationMenuButton = ({
 
   const onClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.currentTarget.blur();
+    toggleIsNavigationMenuOpen();
   };
 
   return (

@@ -9,7 +9,11 @@ import styled, { css } from "styled-components";
 import { NavigationItem, NavigationMenuButton } from "./components";
 import { navigationItemPadding } from "./utils";
 
-export const NavigationBar = () => {
+export const NavigationBar = ({
+  toggleIsNavigationMenuOpen,
+}: {
+  toggleIsNavigationMenuOpen: () => void;
+}) => {
   const colorTheme = useContext(ColorThemeContext);
   const isSmallWindow = useIsWindowSizeClass([smallWindowSizeClass]);
   const { t } = useTranslation();
@@ -21,7 +25,10 @@ export const NavigationBar = () => {
 
   return (
     <StyledNavigationBar $colorTheme={colorTheme}>
-      <StyledNavigationMenuButton isExpanded={isSmallWindow} />
+      <StyledNavigationMenuButton
+        isExpanded={isSmallWindow}
+        toggleIsNavigationMenuOpen={toggleIsNavigationMenuOpen}
+      />
 
       {navigationItemArray.map((navigationItem, index) => (
         <StyledNavigationItem
