@@ -7,8 +7,10 @@ import { NavigationItemContent } from "./components";
 import { type NavigationItemType, buildNavigationItemStyle } from "./utils";
 
 export const NavigationMenuButton = ({
+  className,
   isExpanded = false,
 }: {
+  className?: string;
   isExpanded?: boolean;
 }) => {
   const colorTheme = useContext(ColorThemeContext);
@@ -24,7 +26,12 @@ export const NavigationMenuButton = ({
   };
 
   return (
-    <StyledNavigationMenuButton $colorTheme={colorTheme} onClick={onClick}>
+    <StyledNavigationMenuButton
+      className={className}
+      $colorTheme={colorTheme}
+      onClick={onClick}
+      title={!isExpanded ? navigationItem.label : undefined}
+    >
       <NavigationItemContent
         isExpanded={isExpanded}
         navigationItem={navigationItem}

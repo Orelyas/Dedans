@@ -1,6 +1,4 @@
-import { smallWindowSizeClass } from "@/utils/breakpoints";
 import { ColorThemeContext, type ColorThemeType } from "@/utils/contexts";
-import { useIsWindowSizeClass } from "@/utils/hooks";
 import { homeIcon, settingsIcon } from "@/utils/icons";
 import { homePagePath, settingsPagePath } from "@/utils/router";
 import { useContext } from "react";
@@ -9,9 +7,8 @@ import styled, { css } from "styled-components";
 import { NavigationItem, NavigationMenuButton } from "./components";
 import { navigationItemPadding } from "./utils";
 
-export const NavigationBar = () => {
+export const NavigationRail = () => {
   const colorTheme = useContext(ColorThemeContext);
-  const isSmallWindow = useIsWindowSizeClass([smallWindowSizeClass]);
   const { t } = useTranslation();
 
   const navigationItemArray = [
@@ -20,29 +17,20 @@ export const NavigationBar = () => {
   ];
 
   return (
-    <StyledNavigationBar $colorTheme={colorTheme}>
-      <StyledNavigationMenuButton isExpanded={isSmallWindow} />
+    <StyledNavigationRail $colorTheme={colorTheme}>
+      <div>
+        {navigationItemArray.map((navigationItem, index) => (
+          <StyledNavigationItem key={index} navigationItem={navigationItem} />
+        ))}
+      </div>
 
-      {navigationItemArray.map((navigationItem, index) => (
-        <StyledNavigationItem
-          isExpanded={isSmallWindow}
-          key={index}
-          navigationItem={navigationItem}
-        />
-      ))}
-    </StyledNavigationBar>
+      <StyledNavigationMenuButton />
+    </StyledNavigationRail>
   );
 };
 
 const navigationItemStyle = css`
-  padding: ${navigationItemPadding} 0;
-  width: 100%;
-`;
-
-const StyledNavigationBar = styled.nav<{ $colorTheme: ColorThemeType }>`
-  background-color: ${(props) => props.$colorTheme.surfaceContainerColor};
-  border-top: 1px solid ${(props) => props.$colorTheme.outlineVariantColor};
-  display: flex;
+  padding: 0 ${navigationItemPadding};
 `;
 
 const StyledNavigationItem = styled(NavigationItem)`
@@ -51,4 +39,13 @@ const StyledNavigationItem = styled(NavigationItem)`
 
 const StyledNavigationMenuButton = styled(NavigationMenuButton)`
   ${navigationItemStyle}
+`;
+
+const StyledNavigationRail = styled.nav<{ $colorTheme: ColorThemeType }>`
+  background-color: ${(props) => props.$colorTheme.surfaceContainerColor};
+  border-right: 1px solid ${(props) => props.$colorTheme.outlineVariantColor};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: ${navigationItemPadding} 0;
 `;

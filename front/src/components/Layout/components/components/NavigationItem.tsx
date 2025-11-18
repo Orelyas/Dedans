@@ -6,9 +6,11 @@ import { NavigationItemContent } from "./components";
 import { buildNavigationItemStyle, type NavigationItemType } from "./utils";
 
 export const NavigationItem = ({
+  className,
   isExpanded = false,
   navigationItem,
 }: {
+  className?: string;
   isExpanded?: boolean;
   navigationItem: NavigationItemType;
 }) => {
@@ -26,7 +28,9 @@ export const NavigationItem = ({
       <>
         <StyledNavigationItem
           $colorTheme={colorTheme}
+          className={className}
           onClick={onClick}
+          title={!isExpanded ? navigationItem.label : undefined}
           to={to}
         >
           <NavigationItemContent

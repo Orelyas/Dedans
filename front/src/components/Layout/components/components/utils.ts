@@ -24,8 +24,6 @@ export const buildNavigationItemStyle = (props: {
     cursor: pointer;
     display: flex;
     justify-content: center;
-    padding: 6px 0;
-    width: 100%;
 
     &:hover ${StyledStateLayer} {
       background-color: ${buildHoverColor(
