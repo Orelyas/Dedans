@@ -8,6 +8,18 @@ const labelFontFamily = css`
   font-family: "Roboto", sans-serif;
 `;
 
+const titleFontFamily = css`
+  font-family: "Alte Haas Grotesk Bold", "Roboto", sans-serif;
+`;
+
+export const largeDisplayFont = css`
+  ${titleFontFamily}
+
+  font-size: 57px;
+  letter-spacing: -0.25px;
+  line-height: 64px;
+`;
+
 export const mediumBodyFont = css`
   ${bodyFontFamily}
 

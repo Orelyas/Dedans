@@ -6,12 +6,12 @@ import {
 import { ColorThemeContext, type ColorThemeType } from "@/utils/contexts";
 import { mediumBodyFont } from "@/utils/fonts";
 import { useIsWindowSizeClass } from "@/utils/hooks";
-import { useContext, useState } from "react";
+import { useContext, useState, type ReactNode } from "react";
 import { Outlet } from "react-router";
 import styled from "styled-components";
 import { NavigationBar, NavigationMenu, NavigationRail } from "./components";
 
-export const Layout = () => {
+export const Layout = ({ children }: { children?: ReactNode }) => {
   const colorTheme = useContext(ColorThemeContext);
   const isMobile = useIsWindowSizeClass(mobileSizeClassArray);
   const [isNavigationMenuOpen, setIsNavigationMenuOpen] = useState(false);
@@ -33,9 +33,7 @@ export const Layout = () => {
           />
         )}
 
-        <StyledContent>
-          <Outlet />
-        </StyledContent>
+        <StyledContent>{children ? children : <Outlet />}</StyledContent>
       </StyledLayout>
 
       {isNavigationMenuOpen && (

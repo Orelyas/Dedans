@@ -37,6 +37,7 @@ export const buildNavigationItemStyle = (props: {
       )};
       outline: 3px solid ${props.$colorTheme.secondaryColor};
       outline-offset: 1px;
+      position: relative;
     }
 
     &:active ${StyledStateLayer} {

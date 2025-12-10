@@ -1,4 +1,10 @@
-import type { Dispatch, ReactNode, SetStateAction } from "react";
+import {
+  useEffect,
+  useRef,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+} from "react";
 import styled from "styled-components";
 
 export const Overlay = ({
@@ -8,11 +14,21 @@ export const Overlay = ({
   children: ReactNode;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    ref?.current?.focus();
+  }, []);
+
   const onClick = () => {
     setIsOpen(false);
   };
 
-  return <StyledOverlay onClick={onClick}>{children}</StyledOverlay>;
+  return (
+    <StyledOverlay onClick={onClick} ref={ref} tabIndex={-1}>
+      {children}
+    </StyledOverlay>
+  );
 };
 
 const StyledOverlay = styled.div`
