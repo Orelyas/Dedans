@@ -9,9 +9,11 @@ import type { NavigationItemType } from "../utils";
 
 export const NavigationItemContent = ({
   isExpanded = false,
+  isNavigationMenu,
   navigationItem,
 }: {
   isExpanded?: boolean;
+  isNavigationMenu?: boolean;
   navigationItem: NavigationItemType;
 }) => {
   const { icon, label, to } = navigationItem;
@@ -24,7 +26,11 @@ export const NavigationItemContent = ({
     : false;
 
   return (
-    <StyledIconContainer $colorTheme={colorTheme} $isLocation={isLocation}>
+    <StyledIconContainer
+      $colorTheme={colorTheme}
+      $isLocation={isLocation}
+      $isNavigationMenu={isNavigationMenu}
+    >
       <StyledStateLayer $isExpanded={isExpanded}>
         <Icon
           color={
@@ -53,6 +59,7 @@ const iconContainerBorderRadius = css`
 const StyledIconContainer = styled.div<{
   $colorTheme: ColorThemeType;
   $isLocation: boolean;
+  $isNavigationMenu?: boolean;
 }>`
   transition: background-color 250ms;
 
@@ -62,6 +69,12 @@ const StyledIconContainer = styled.div<{
       ${iconContainerBorderRadius}
 
       background-color: ${props.$colorTheme.secondaryContainerColor};
+    `}
+
+  ${(props) =>
+    props.$isNavigationMenu &&
+    css`
+      width: 100%;
     `}
 `;
 

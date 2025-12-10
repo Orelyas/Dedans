@@ -22,8 +22,6 @@ export const Layout = () => {
 
   return (
     <>
-      {isNavigationMenuOpen && <NavigationMenu />}
-
       <StyledLayout $colorTheme={colorTheme}>
         {isMobile ? (
           <NavigationBar
@@ -39,6 +37,13 @@ export const Layout = () => {
           <Outlet />
         </StyledContent>
       </StyledLayout>
+
+      {isNavigationMenuOpen && (
+        <NavigationMenu
+          setIsOpen={setIsNavigationMenuOpen}
+          toggleIsNavigationMenuOpen={toggleIsNavigationMenuOpen}
+        />
+      )}
     </>
   );
 };

@@ -9,10 +9,12 @@ export const NavigationItem = ({
   className,
   isExpanded = false,
   navigationItem,
+  toggleIsNavigationMenuOpen,
 }: {
   className?: string;
   isExpanded?: boolean;
   navigationItem: NavigationItemType;
+  toggleIsNavigationMenuOpen?: () => void;
 }) => {
   const { to } = navigationItem;
 
@@ -21,6 +23,10 @@ export const NavigationItem = ({
 
   const onClick = () => {
     ref?.current?.focus();
+
+    if (toggleIsNavigationMenuOpen) {
+      toggleIsNavigationMenuOpen();
+    }
   };
 
   return (
@@ -35,6 +41,7 @@ export const NavigationItem = ({
         >
           <NavigationItemContent
             isExpanded={isExpanded}
+            isNavigationMenu={!!toggleIsNavigationMenuOpen}
             navigationItem={navigationItem}
           />
         </StyledNavigationItem>

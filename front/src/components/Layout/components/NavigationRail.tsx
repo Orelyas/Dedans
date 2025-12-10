@@ -1,29 +1,49 @@
 import { ColorThemeContext, type ColorThemeType } from "@/utils/contexts";
-import { useContext } from "react";
+import { homeIcon, settingsIcon } from "@/utils/icons";
+import { homePagePath, settingsPagePath } from "@/utils/router";
+import { type MouseEvent, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import styled, { css } from "styled-components";
 import { NavigationItem, NavigationMenuButton } from "./components";
-import { buildNavigationMenuItemArray, navigationItemPadding } from "./utils";
+import { navigationItemPadding } from "./utils";
 
 export const NavigationRail = ({
+  isNavigationMenu,
   toggleIsNavigationMenuOpen,
 }: {
+  isNavigationMenu?: true;
   toggleIsNavigationMenuOpen: () => void;
 }) => {
   const colorTheme = useContext(ColorThemeContext);
   const { t } = useTranslation();
 
-  const navigationItemArray = buildNavigationMenuItemArray(t);
+  const navigationItemArray = [
+    { icon: homeIcon, label: t("today"), to: homePagePath },
+    { icon: settingsIcon, label: t("settings"), to: settingsPagePath },
+  ];
+
+  const onClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
 
   return (
-    <StyledNavigationRail $colorTheme={colorTheme}>
+    <StyledNavigationRail $colorTheme={colorTheme} onClick={onClick}>
       <div>
         {navigationItemArray.map((navigationItem, index) => (
-          <StyledNavigationItem key={index} navigationItem={navigationItem} />
+          <StyledNavigationItem
+            isExpanded={isNavigationMenu}
+            key={index}
+            navigationItem={navigationItem}
+            toggleIsNavigationMenuOpen={
+              isNavigationMenu ? toggleIsNavigationMenuOpen : undefined
+            }
+          />
         ))}
       </div>
 
       <StyledNavigationMenuButton
+        isExpanded={isNavigationMenu}
+        isNavigationMenu={isNavigationMenu}
         toggleIsNavigationMenuOpen={toggleIsNavigationMenuOpen}
       />
     </StyledNavigationRail>
@@ -45,6 +65,7 @@ const StyledNavigationMenuButton = styled(NavigationMenuButton)`
 const StyledNavigationRail = styled.nav<{ $colorTheme: ColorThemeType }>`
   background-color: ${(props) => props.$colorTheme.surfaceContainerColor};
   border-right: 1px solid ${(props) => props.$colorTheme.outlineVariantColor};
+  cursor: default;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

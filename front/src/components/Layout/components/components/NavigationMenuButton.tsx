@@ -9,10 +9,12 @@ import { type NavigationItemType, buildNavigationItemStyle } from "./utils";
 export const NavigationMenuButton = ({
   className,
   isExpanded = false,
+  isNavigationMenu,
   toggleIsNavigationMenuOpen,
 }: {
   className?: string;
   isExpanded?: boolean;
+  isNavigationMenu?: true;
   toggleIsNavigationMenuOpen: () => void;
 }) => {
   const colorTheme = useContext(ColorThemeContext);
@@ -37,6 +39,7 @@ export const NavigationMenuButton = ({
     >
       <NavigationItemContent
         isExpanded={isExpanded}
+        isNavigationMenu={isNavigationMenu}
         navigationItem={navigationItem}
       />
     </StyledNavigationMenuButton>
