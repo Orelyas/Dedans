@@ -1,12 +1,15 @@
 import { Layout } from "@/components";
 import { largeDisplayFont } from "@/utils/fonts";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 export const Error404Page = () => {
+  const { t } = useTranslation();
+
   return (
     <Layout>
       <StyledError404Page>
-        <StyledDisplayTitle>Erreur 404</StyledDisplayTitle>
+        <StyledDisplayTitle>{t("error404")}</StyledDisplayTitle>
       </StyledError404Page>
     </Layout>
   );
