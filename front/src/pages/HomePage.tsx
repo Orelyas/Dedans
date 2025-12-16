@@ -19,13 +19,13 @@ export const HomePage = () => {
     }
 
     const year = now.getFullYear();
-    const month = formatNumberIntoTwoDigitString(now.getMonth() + 1);
-    const day = formatNumberIntoTwoDigitString(now.getDate());
+    const month = buildTwoDigitStringFromNumber(now.getMonth() + 1);
+    const day = buildTwoDigitStringFromNumber(now.getDate());
 
     return `${dayPagePath}/${year}/${month}/${day}`;
   };
 
-  const formatNumberIntoTwoDigitString = (n: number) => {
+  const buildTwoDigitStringFromNumber = (n: number) => {
     return `${n}`.padStart(2, "0");
   };
 
