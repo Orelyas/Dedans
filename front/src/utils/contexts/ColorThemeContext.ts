@@ -15,11 +15,12 @@ export interface ColorThemeType {
   outlineVariantColor: string;
   secondaryColor: string;
   secondaryContainerColor: string;
+  surfaceColor: string;
   surfaceContainerColor: string;
   surfaceContainerLowestColor: string;
 }
 
-export const defaultAppThemeColor = "#ba5b88";
+export const defaultAppThemeColor = "#6750a4";
 
 export const buildActiveColor = (color: string) => {
   return `${color}1F`;
@@ -41,6 +42,7 @@ const buildColorThemeFromColorScheme = (colorScheme: DynamicScheme) => {
     outlineVariantColor: hexFromArgb(colorScheme.outlineVariant),
     secondaryColor: hexFromArgb(colorScheme.secondary),
     secondaryContainerColor: hexFromArgb(colorScheme.secondaryContainer),
+    surfaceColor: hexFromArgb(colorScheme.surface),
     surfaceContainerColor: hexFromArgb(colorScheme.surfaceContainer),
     surfaceContainerLowestColor: hexFromArgb(
       colorScheme.surfaceContainerLowest

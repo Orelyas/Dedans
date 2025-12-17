@@ -1,5 +1,5 @@
 import { Layout } from "@/components";
-import { largeDisplayFont } from "@/utils/fonts";
+import { LargeDisplayTitle } from "@/utils/fonts";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
@@ -9,15 +9,11 @@ export const Error404Page = () => {
   return (
     <Layout>
       <StyledError404Page>
-        <StyledDisplayTitle>{t("error404")}</StyledDisplayTitle>
+        <LargeDisplayTitle>{t("error404")}</LargeDisplayTitle>
       </StyledError404Page>
     </Layout>
   );
 };
-
-const StyledDisplayTitle = styled.h1`
-  ${largeDisplayFont}
-`;
 
 const StyledError404Page = styled.div`
   align-items: center;

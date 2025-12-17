@@ -1,6 +1,9 @@
 {
+  "dark": "Sombre",
   "error404": "Erreur 404",
+  "light": "Clair",
   "menu": "Menu",
   "settings": "Paramètres",
+  "themes": " Thèmes",
   "today": "Aujourd'hui"
 }

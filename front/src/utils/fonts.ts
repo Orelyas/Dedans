@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 
 const bodyFontFamily = css`
   font-family: "Alte Haas Grotesk", "Roboto", sans-serif;
@@ -18,6 +18,19 @@ export const largeDisplayFont = css`
   font-size: 57px;
   letter-spacing: -0.25px;
   line-height: 64px;
+`;
+export const LargeDisplayTitle = styled.h1`
+  ${largeDisplayFont}
+`;
+
+export const largeHeadlineFont = css`
+  ${titleFontFamily};
+
+  font-size: 32px;
+  line-height: 40px;
+`;
+export const LargeHeadline = styled.div`
+  ${largeHeadlineFont}
 `;
 
 export const mediumBodyFont = css`
